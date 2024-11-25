@@ -1,0 +1,40 @@
+:root {
+    --black-background: #141414
+}
+
+
+
+body {
+    background-color: var(--black-background);
+}
+.carousel-item {
+    position: relative; 
+    overflow: visible;  
+}
+
+.carousel-item img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: block;
+    position: relative;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.2); 
+    z-index: 10;
+}
+#trending-now-carousel { 
+    overflow: visible !important;
+}
+
+.carousel-inner { 
+    overflow: visible;
+}
+.carousel {
+    position: relative; 
+  }
+  
+  .carousel-control-prev{ 
+    z-index: 10;
+  }
+  .carousel-control-next {
+    z-index: 10; }
