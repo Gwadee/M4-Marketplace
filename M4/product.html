@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio Prodotto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-white" href="index.html">GWADE'S SHOP</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg p-4">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img id="productImage" class="img-fluid rounded" alt="Immagine Prodotto">
+                        </div>
+                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                            <div>
+                                <h2 id="productName" class="fw-bold"></h2>
+                                <p id="productBrand" class="text-muted"></p>
+                                <p id="productDescription"></p>
+                                <h4 class="text-primary fw-bold">💰 <span id="productPrice"></span>€</h4>
+                            </div>
+                            <button class="btn btn-success mt-3" id="addToCart">🛒 Aggiungi al Carrello</button>
+                            <a href="index.html" class="btn btn-secondary mt-2">🔙 Torna al negozio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://striveschool-api.herokuapp.com/api/product/";
+        const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzE3NWZjMzNkYmUxNDAwMTUxNTRkMjQiLCJpYXQiOjE3NDEyOTgwMzcsImV4cCI6MTc0MjUwNzYzN30.qjvN58l9gB2FO1qE1tlUU-ndztP4Wus0XV0JBV6Z_wo"; // Inserisci il tuo token API
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+
+        async function fetchProductDetails() {
+            try {
+                const response = await fetch(`${API_URL}${productId}`, {
+                    headers: { "Authorization": `Bearer ${TOKEN}` }
+                });
+
+                if (!response.ok) throw new Error("Errore nel caricamento del prodotto");
+
+                const product = await response.json();
+
+                document.getElementById("productImage").src = product.imageUrl;
+                document.getElementById("productName").textContent = product.name;
+                document.getElementById("productBrand").textContent = "Brand: " + product.brand;
+                document.getElementById("productDescription").textContent = product.description;
+                document.getElementById("productPrice").textContent = product.price;
+            } catch (error) {
+                console.error("Errore nel caricamento del prodotto", error);
+            }
+        }
+
+        fetchProductDetails();
+    </script>
+</body>
+</html>
