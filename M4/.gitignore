@@ -1,0 +1,14 @@
+# Escludere cartelle non necessarie
+../M1-M2/
+../M2- JS/
+../M5/
+../M6/
+../Strive.Blog/
+../marketplace/
+../Progetto WIP/
+
+# Escludere file specifici
+../GitHub Desktop.lnk
+../MongoDBCompass.lnk
+../Postman.lnk
+../Visual Studio Code.lnk
